@@ -1,91 +1,95 @@
-TEORIA DOS GRAFOS
+# 🕸️ Teoria dos Grafos — Malha Logística & Mapas Ponderados em C/C++
 
-This repository contains implementations of fundamental Graph Theory concepts and algorithms developed in C++. The project was created for academic purposes and focuses on applying theoretical graph concepts through practical programming.
+![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Data Structures](https://img.shields.io/badge/Estruturas_de_Dados-Grafos_Ponderados-6DB33F?style=for-the-badge)
 
-PROJECT OVERVIEW
+Implementação prática de **Grafos Ponderados representados por Matrizes de Adjacência** em **C/C++**, desenvolvida no curso de **Ciência da Computação (IFSULDEMINAS)**.
 
-TeoriaDosGrafos includes:
+Em vez de apenas demonstrar operações abstratas, o projeto aplica a teoria dos grafos na resolução de **dois problemas práticos** através de uma aplicação interativa via console (`825` linhas de código):
 
-Graph representations (Adjacency Matrix and/or Adjacency List)
+1. **🚚 Rede de Logística entre Filiais (Grafo Ponderado por Custo em R$)**
+2. **🗺️ Mapa de Locomoção de Jogo (Grafo Direcionado Ponderado por Tempo)**
 
-Implementation of classical graph algorithms
+---
 
-Console-based execution for testing graph behavior
+## 🎯 Módulos do Sistema
 
-Structured C++ code focused on algorithmic clarity
+### 1. Módulo de Logística entre Filiais
+Modela cidades/filiais de uma empresa como **vértices** e as rotas comerciais entre elas como **arestas ponderadas pelo custo de transporte (R$)**.
+- **Inserção e remoção de vértices (`inserefilial`, `removefilial`):** Cadastro de novas filiais na matriz e remoção com limpeza automática de todas as arestas incidentes.
+- **Gerenciamento de rotas e custos (`insererota`, `atualizap`):** Criação e atualização de arestas ponderadas entre cidades com validação de existência e prevenção de laços inválidos.
+- **Consulta de adjacência (`listafiliaisp`):** Listagem de todos os destinos alcançáveis a partir de uma filial e seus respectivos custos.
+- **Cálculo do custo global da malha (`calculacustos`):** Percorre a matriz de adjacência somando o custo operacional total das rotas cadastradas.
 
-This project is intended for students studying Computer Science, Algorithms, and Data Structures.
+### 2. Módulo de Mapa de Jogo (Locomoção entre Regiões)
+Modela regiões/locais de um mapa virtual como **vértices** e os caminhos entre eles como **arestas direcionadas ponderadas pelo tempo de deslocamento**.
+- **Cadastro e remoção de locais (`inserelocaljogo`, `removelocal`)**
+- **Gerenciamento de conexões e tempos (`inseremovimentacao`, `atualizamovimentacao`, `removetempo`)**
+- **Consultas de grau de saída e grau de entrada (`listalocaisdestino`, `listalocaisorigem`):**
+  - *Destinos a partir de um local* (sucessores / arestas de saída).
+  - *Origens que chegam a um local* (predecessores / arestas de entrada).
+- **Cálculo do tempo total de percurso do mapa (`calculatempo`)**
 
-FEATURES
+---
 
-Depending on the implemented files, the project may include:
+## 🏗️ Representação Computacional
 
-Directed and undirected graphs
+```mermaid
+graph LR
+    subgraph "1. Grafo de Logística (Custo R$)"
+        F1(("Filial A")) ---|"R$ 150,00"| F2(("Filial B"))
+        F2 ---|"R$ 220,00"| F3(("Filial C"))
+        F1 ---|"R$ 310,00"| F3
+    end
 
-Breadth-First Search (BFS)
+    subgraph "2. Grafo Direcionado do Mapa (Tempo)"
+        L1(("Vila Inicial")) -->|"12 min"| L2(("Floresta"))
+        L2 -->|"25 min"| L3(("Castelo"))
+        L3 -->|"18 min"| L1
+    end
+```
 
-Depth-First Search (DFS)
+---
 
-Graph traversal algorithms
+## 📂 Estrutura do Repositório
 
-Connectivity checking
+```text
+TeoriaDosGrafos/
+├── src/
+│   └── main.cpp         # Código-fonte completo com os módulos de Logística e Mapa de Jogo
+├── Linhas de codigo     # Arquivo original do trabalho acadêmico
+└── README.md            # Documentação do projeto
+```
 
-Shortest path algorithms (if implemented)
+---
 
-Use of STL structures (vector, queue, stack, etc.)
+## 🚀 Como Compilar e Executar
 
-The implementations aim to reinforce theoretical graph concepts using efficient C++ programming techniques.
+### Pré-requisitos
+- Compilador **GCC / G++** (MinGW no Windows ou `build-essential` no Linux/macOS)
 
-PROJECT STRUCTURE
+### Compilação e Execução
 
-/
-├── src/ C++ source files (.cpp, .h)
-├── examples/ Example inputs (if available)
-├── .gitignore
-└── README.txt
+```bash
+# Clonar o repositório
+git clone https://github.com/DaviMirandaVaz/TeoriaDosGrafos.git
+cd TeoriaDosGrafos
 
-(The structure may vary depending on organization.)
+# Compilar com g++
+g++ src/main.cpp -o grafos
 
-REQUIREMENTS
+# Executar no Windows
+./grafos.exe
 
-To compile and run the project, you need:
+# Executar no Linux / macOS
+./grafos
+```
 
-C++ compiler (G++ recommended)
+---
 
-C++11 or newer standard
+## 👨‍💻 Autor
 
-Terminal or IDE (VS Code, CLion, etc.)
-
-COMPILATION
-
-Using g++:
-
-g++ -std=c++11 main.cpp -o program
-
-If multiple files:
-
-g++ -std=c++11 *.cpp -o program
-
-EXECUTION
-
-After compilation:
-
-./program (Linux / macOS)
-
-program.exe (Windows)
-
-PURPOSE
-
-This project was developed to strengthen understanding of:
-
-Graph data structures
-
-Algorithm design and complexity
-
-Problem-solving using graph theory
-
-Practical implementation of theoretical concepts
-
-LICENSE
-
-This project is intended for academic and educational purposes.
+Desenvolvido por **Davi Miranda Vaz**  
+🎓 Ciência da Computação — IFSULDEMINAS  
+🔗 [GitHub](https://github.com/DaviMirandaVaz)
